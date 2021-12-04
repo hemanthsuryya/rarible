@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Rarible</title>
+    <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
+    <script src="https://unpkg.com/moralis/dist/moralis.js"></script>
+  </head>
+
+  <body>
+    <h1>Rarible</h1>
+
+    <button id="btn-login">Connect wallet</button>
+    <button id="btn-userInfo">Profile</button>
+    
+
+    <div id="userInfo">
+        <h4>User Profile</h4>
+        <intpu type="text" id="txt-username" required placeholder="Enter username">
+        <input type="text" id="txt-email" placeholder="Enter email ID">
+        <small>Optional</small>
+        <img src="" id="imgAvatar" alt="">
+        <label for="fileAvatar">Select Avatar</label>
+        <input type="file" id="fileAvatar">   
+        
+        <button id="btn-closeUserInfo">Close</button>
+        <button id="btn-saveUserInfo">Save</button>
+        <button id="btn-logout">Logout</button>
+    </div>
+
+    <script  src="./main.js"></script>
+  </body>
+</html>

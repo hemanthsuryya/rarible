@@ -49,9 +49,10 @@ showElement = (element) => element.style.display  = "block";
 
 const userConnectButton = document.getElementById("btn-login");
 userConnectButton.onclick = login;
-const userProfileButton = document.getElementById("btn-userinfo");
+const userProfileButton = document.getElementById("btn-userInfo");
 userProfileButton.onclick = openUserInfo;
 
 const userInfo = document.getElementById("userInfo");
 document.getElementById("btn-closeUserInfo").onclick = () => hideElement(userInfo);
+document.getElementById("btn-logout").onclick = logout;
 init();

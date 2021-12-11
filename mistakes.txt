@@ -1,0 +1,3 @@
+1. Error: Returned error: VM Exception while processing transaction: invalid opcode
+https://studygroup.moralis.io/t/saving-migration-to-chain-error-returned-error-vm-exception-while-processing-transaction-invalid-opcode/35634/3
+

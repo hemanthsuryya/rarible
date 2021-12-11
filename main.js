@@ -1,6 +1,10 @@
 /* Moralis init code */
 const serverUrl = "https://mvcqongwpazm.usemoralis.com:2053/server";
 const appId = "QXHvqxqxyVp2Y8tXGDFZfRIoXGgEEjk3w0CPMD6f";
+
+const TOKEN_CONTRACT_ADDRESS = "0xa486D49C333c55c5248DBAB172F4e7032432E1f0";
+
+
 Moralis.start({ serverUrl, appId });
 
 /* TODO: Add Moralis Authentication code */

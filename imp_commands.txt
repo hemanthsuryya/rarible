@@ -1,0 +1,17 @@
+1. In the support files dir: ./frpc -c frpc.ini
+
+$ truffle develop
+$truffle(develop) migrate --reset
+2. pwsh @ root dir: python -m http.server
+3. Change abi from build\contracts\raribleToken.json to abi.js
+
+4. Copy CONTRACT_ADDRESS FROM build\contracts\raribleToken.json
+address from below to main.js
+"networks": {
+    "5777": {
+      "events": {},
+      "links": {},
+      "address": "0xa486D49C333c55c5248DBAB172F4e7032432E1f0",
+      "transactionHash": "0x32e44358289bf4826c4c4de78161cf3968c7f4708574704339803591293636cb"
+    }
+  },

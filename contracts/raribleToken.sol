@@ -16,21 +16,17 @@ contract RaribleToken is ERC721 {
     }
 
     mapping (uint256 => Item) public Items;
-    uint256 ItemsSize;
     function createItem(string memory uri) public returns(uint256){
         _tokenIds.increment();
         uint256 newItemId = _tokenIds.current();
         _safeMint(msg.sender, newItemId);
-        ItemsSize++;
-        if(ItemsSize != 0){
         Items[newItemId] = Item(newItemId, msg.sender, uri);
-        }
         
         return newItemId;
     }
 
-    function tokenURI(uint256 tokenId) public view  override returns (string memory) {
-        require(_exists(tokenId), "ERC721Metadata: URI query for nonexistent token");
+    function tokenURI(uint256 tokenId) public view override returns (string memory) {
+        // require(_exists(tokenId), "ERC721Metadata: URI query for nonexistent token");
 
         return Items[tokenId].uri;
     }

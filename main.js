@@ -2,7 +2,7 @@
 const serverUrl = "https://mvcqongwpazm.usemoralis.com:2053/server";
 const appId = "QXHvqxqxyVp2Y8tXGDFZfRIoXGgEEjk3w0CPMD6f";
 
-const TOKEN_CONTRACT_ADDRESS = "0xa486D49C333c55c5248DBAB172F4e7032432E1f0";
+const TOKEN_CONTRACT_ADDRESS = "0x1CDD3E1F97aBB288716F07FFecD12d16A57392Ca";
 
 
 Moralis.start({ serverUrl, appId });
@@ -10,7 +10,9 @@ Moralis.start({ serverUrl, appId });
 /* TODO: Add Moralis Authentication code */
 init = async ()  => {
     hideElement(userInfo);
-    window.web3 = await Moralis.enableWeb3();
+    hideElement(createItemForm);
+    window.web3 = await Moralis.Web3.enable();
+    window.tokenContract = new web3.eth.Contract(tokenContractAbi, TOKEN_CONTRACT_ADDRESS);
     initUser();
 }
 
@@ -104,8 +106,7 @@ createItem = async () => {
     const metadata = {
         name: createItemNameField.value,
         description: createItemDescriptionField.value,
-        nftFilePath: nftFilePath,
-        nftFileHash: nftFileHash
+        image: nftFilePath,
     };
 
     const nftFileMetadataFile = new Moralis.File("metadata.json", {base64: btoa(JSON.stringify(metadata))});
@@ -114,6 +115,7 @@ createItem = async () => {
     const nftFileMetadataFilePath = nftFileMetadataFile.ipfs();
     const nftFileMetadataFileHash = nftFileMetadataFile.hash();
 
+    const nftId = await mintNft(nftFileMetadataFilePath);
     const Item = Moralis.Object.extend("Item");
 
     const item = new Item();
@@ -123,10 +125,21 @@ createItem = async () => {
     item.set('nftFileHash', nftFileHash);
     item.set('metadataFilePath', nftFileMetadataFilePath);
     item.set('metadataFileHash', nftFileMetadataFileHash);
+    item.set('nftId', nftId);
+    item.set('nftContractAddress', TOKEN_CONTRACT_ADDRESS);
     await item.save();
     console.log(item);
 }
 
+mintNft = async (metadataUrl) => {
+    console.log('inside mintNFT');
+    const receipt = await tokenContract.methods.createItem(metadataUrl).send({from: ethereum.selectedAddress});
+    
+    console.log('inside mintNFT-2');
+    console.log(receipt);
+
+    return receipt.events.Transfer.returnValues.tokenId;
+}
 hideElement = (element) => element.style.display  = "none";
 showElement = (element) => element.style.display  = "block";
 

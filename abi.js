@@ -391,4 +391,4 @@ var tokenContractAbi = [
     "type": "function",
     "constant": true
   }
-]
+];

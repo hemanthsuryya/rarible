@@ -2,7 +2,7 @@
 const serverUrl = "https://mvcqongwpazm.usemoralis.com:2053/server";
 const appId = "QXHvqxqxyVp2Y8tXGDFZfRIoXGgEEjk3w0CPMD6f";
 
-const TOKEN_CONTRACT_ADDRESS = "0x1CDD3E1F97aBB288716F07FFecD12d16A57392Ca";
+const TOKEN_CONTRACT_ADDRESS = "0x88646EF550C1902812B285700B2A3849c6f67DcA";
 
 
 Moralis.start({ serverUrl, appId });
@@ -132,10 +132,8 @@ createItem = async () => {
 }
 
 mintNft = async (metadataUrl) => {
-    console.log('inside mintNFT');
     const receipt = await tokenContract.methods.createItem(metadataUrl).send({from: ethereum.selectedAddress});
     
-    console.log('inside mintNFT-2');
     console.log(receipt);
 
     return receipt.events.Transfer.returnValues.tokenId;
